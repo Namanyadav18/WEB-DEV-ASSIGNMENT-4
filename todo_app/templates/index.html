@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}To-Do List{% endblock %}
+
+{% block content %}
+
+<!-- Input Panel -->
+<section class="input-panel">
+    <h2>Add New Task</h2>
+    <div class="input-group">
+        <input type="text" id="task-title" placeholder="Task title (required)" autocomplete="off">
+        <span class="error-msg" id="title-error">Title cannot be empty!</span>
+    </div>
+    <div class="input-group">
+        <textarea id="task-description" placeholder="Description (optional)" rows="2"></textarea>
+    </div>
+    <div class="input-row">
+        <select id="task-priority">
+            <option value="low">🟢 Low Priority</option>
+            <option value="medium" selected>🟠 Medium Priority</option>
+            <option value="high">🔴 High Priority</option>
+        </select>
+        <button id="add-btn" onclick="addTask()">+ Add Task</button>
+    </div>
+    <div class="fetch-error" id="fetch-error"></div>
+</section>
+
+<!-- Task Counter -->
+<section class="task-counter">
+    <span class="counter-badge blue">Total: <strong id="count-total">0</strong></span>
+    <span class="counter-badge orange">Active: <strong id="count-active">0</strong></span>
+    <span class="counter-badge green">Completed: <strong id="count-completed">0</strong></span>
+</section>
+
+<!-- Filter Bar -->
+<section class="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="filterTasks('all')">All Tasks</button>
+    <button class="filter-btn" data-filter="active" onclick="filterTasks('active')">Active</button>
+    <button class="filter-btn" data-filter="completed" onclick="filterTasks('completed')">Completed</button>
+</section>
+
+<!-- Task List -->
+<section id="task-list">
+    <!-- Tasks injected by JavaScript -->
+</section>
+
+{% endblock %}
